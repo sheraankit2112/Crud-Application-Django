@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.read,name="index"),
     path('add',views.create,name="addrecord"),
     path('<int:id>',views.update,name="updatee"),
     path('delete/<int:id>',views.delete,name="delete")
-]
+]+ static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
