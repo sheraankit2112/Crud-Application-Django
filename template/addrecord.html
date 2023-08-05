@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    *{
+        font-size: 20px;
+    }
+    .alert{
+        height:3rem;
+        margin-top:15px !important;
+        padding:0.7rem;
+    }
+    .btn-close{
+        height:10px !important;
+    }
+    .container{
+        width: 30%;
+    }
+    .top{
+        
+    }
+
+</style>
+</head>
+<body class="bg-light">
+    {% if fm.email.errors %}
+
+    <div class="alert alert-danger alert-dismissible" style="width:50%; margin:0 auto;">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>ERROR!  </strong> {{fm.email.errors|striptags}}
+      </div>
+    {% endif %}
+    {% if fm.name.errors %}
+
+    <div class="alert alert-danger alert-dismissible" style="width:50%; margin:0 auto;">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>ERROR!  </strong> {{fm.name.errors|striptags}}
+      </div>
+    {% endif %}
+    <div class="container border p-3  mt-3 rounded bg-dark">
+        <div class="top text-center text-white">
+            <h3>Add Record</h3>
+        </div>
+        <div class="forms text-white">
+            <form action="" class="form-group" method="post">
+                {% csrf_token %}
+                {% for i in fm %}
+                {{i.label_tag}}
+                {{i}}
+                
+                <br>
+                {% endfor %}
+                <br>
+                <input type="submit" value="Add" class="btn px-5 btn-primary">
+
+
+            </form>
+        </div>
+    
+    </div>
+    
+</body>
+</html>
